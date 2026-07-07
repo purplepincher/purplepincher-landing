@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "purplepincher-landing",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-01",
+  "rules": [
+    { "type": "Text", "globs": ["**/*.html"] },
+    { "type": "CompiledWasm", "globs": ["**/*.wasm"] }
+  ],
+  "routes": [
+    { "pattern": "purplepincher.org/*", "zone_id": "cd520b5467dff7c50d10e76d807f2a59" }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

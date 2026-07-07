@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PurplePincher — real ideas, hardened</title>
+<meta name="description" content="PurplePincher hardens real, tested software out of the SuperInstance research sketchbook. Eleven repositories have earned the shell. Try the actual published geometry live below.">
+<meta name="theme-color" content="#0E1A1C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E1A1C;
+    --ink-deep: #081113;
+    --shell: #F0E9D8;
+    --shell-dim: #C9C0AB;
+    --claw: #A8548C;
+    --claw-deep: #7A3B5E;
+    --lattice: #5FB4C7;
+    --lattice-dim: #3F8FA3;
+    --hardened: #D98B54;
+    --line: rgba(240, 233, 216, 0.14);
+    --display: "Fraunces", Georgia, serif;
+    --body: "IBM Plex Sans", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", "SF Mono", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--shell);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--lattice); }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--lattice);
+    outline-offset: 3px;
+  }
+
+  ::selection { background: var(--claw); color: var(--shell); }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- organic top: shell curve, soft, dim ---------- */
+
+  .shell-field {
+    position: relative;
+    padding: 88px 0 40px;
+    overflow: hidden;
+  }
+
+  .shell-field::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 140%;
+    background:
+      radial-gradient(ellipse 60% 45% at 20% 15%, rgba(122,59,94,0.28), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 85% 30%, rgba(63,143,163,0.18), transparent 65%);
+    filter: blur(2px);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lattice);
+    margin: 0 0 22px;
+    position: relative;
+  }
+
+  h1.thesis {
+    font-family: var(--display);
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 28px;
+    max-width: 15ch;
+    position: relative;
+  }
+
+  h1.thesis em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--claw);
+  }
+
+  .lede {
+    font-size: 1.14rem;
+    color: var(--shell-dim);
+    max-width: 56ch;
+    margin: 0 0 8px;
+    position: relative;
+  }
+
+  .lede strong { color: var(--shell); font-weight: 600; }
+
+  /* ---------- the crab line: a real sequence, numbered because order carries meaning ---------- */
+
+  .chain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 56px 0 8px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .chain-step {
+    flex: 1 1 220px;
+    padding: 22px 20px 22px 0;
+    border-right: 1px solid var(--line);
+  }
+  .chain-step:last-child { border-right: none; }
+
+  .chain-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--lattice-dim);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .chain-step p {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--shell-dim);
+  }
+
+  .chain-step strong {
+    display: block;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--shell);
+    margin-bottom: 4px;
+  }
+
+  /* ---------- the demo: the hero's real substance, precise + interactive ---------- */
+
+  .demo-section {
+    position: relative;
+    padding: 64px 0 72px;
+    background:
+      linear-gradient(180deg, transparent, var(--ink-deep) 18%, var(--ink-deep) 82%, transparent);
+  }
+
+  .lattice-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .demo-head {
+    text-align: center;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .demo-head h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0 0 10px;
+  }
+
+  .demo-head p {
+    color: var(--shell-dim);
+    max-width: 52ch;
+    margin: 0 auto;
+    font-size: 0.98rem;
+  }
+
+  .demo-card {
+    position: relative;
+    margin-top: 36px;
+    background: rgba(8, 17, 19, 0.55);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  @media (max-width: 680px) {
+    .demo-card { grid-template-columns: 1fr; }
+  }
+
+  .demo-canvas-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    background: var(--ink-deep);
+    border: 1px solid var(--line);
+    touch-action: none;
+    cursor: crosshair;
+  }
+
+  #snapCanvas { width: 100%; height: 100%; display: block; border-radius: 12px; }
+
+  .demo-hint {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--shell-dim);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  .demo-readout {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+
+  .readout-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+  }
+  .readout-row:last-child { border-bottom: none; }
+
+  .readout-label {
+    color: var(--shell-dim);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .readout-value {
+    color: var(--lattice);
+    font-size: 15px;
+  }
+
+  .readout-value.claw { color: var(--claw); }
+
+  .demo-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+
+  .demo-controls button {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--shell-dim);
+    padding: 7px 11px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .demo-controls button:hover,
+  .demo-controls button.active {
+    border-color: var(--lattice);
+    color: var(--lattice);
+  }
+
+  .demo-footnote {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 12.5px;
+    color: var(--shell-dim);
+    opacity: 0.75;
+  }
+  .demo-footnote code {
+    font-family: var(--mono);
+    background: rgba(240,233,216,0.06);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  /* ---------- the registry: real accounting, not decoration ---------- */
+
+  .registry-section { padding: 72px 0 40px; }
+
+  .registry-head { margin-bottom: 8px; }
+  .registry-head h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0 0 10px;
+  }
+  .registry-head p { color: var(--shell-dim); max-width: 60ch; margin: 0; }
+
+  .ledger {
+    margin-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 1.4fr 2.4fr auto;
+    gap: 20px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (max-width: 620px) {
+    .ledger-row { grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  .ledger-row.flagship {
+    background: linear-gradient(90deg, rgba(217,139,84,0.08), transparent 40%);
+  }
+
+  .ledger-name {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.05rem;
+  }
+  .ledger-name a { color: var(--shell); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .ledger-name a:hover { border-color: var(--lattice); color: var(--lattice); }
+
+  .ledger-desc { font-size: 0.92rem; color: var(--shell-dim); }
+
+  .ledger-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--lattice-dim);
+    white-space: nowrap;
+    text-align: right;
+  }
+  .ledger-tag.hardened { color: var(--hardened); }
+
+  /* ---------- adoption bar: the actual mechanism, plainly ---------- */
+
+  .bar-section { padding: 56px 0 80px; }
+  .bar-section h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+    margin: 0 0 24px;
+  }
+
+  .bar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: bar;
+  }
+
+  .bar-list li {
+    counter-increment: bar;
+    position: relative;
+    padding: 14px 0 14px 40px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.95rem;
+    color: var(--shell-dim);
+  }
+  .bar-list li::before {
+    content: counter(bar);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--lattice-dim);
+    width: 24px;
+  }
+  .bar-list strong { color: var(--shell); }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    padding: 40px 0 60px;
+    border-top: 1px solid var(--line);
+    font-size: 0.9rem;
+    color: var(--shell-dim);
+  }
+  footer a { margin-right: 22px; }
+  footer .tagline {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--shell-dim);
+    margin-top: 22px;
+    font-size: 0.95rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell-field">
+  <div class="wrap">
+    <p class="eyebrow">purplepincher</p>
+    <h1 class="thesis">Ideas start soft.<br><em>A few of them harden here.</em></h1>
+    <p class="lede">
+      <strong>SuperInstance</strong> is a ~4,100-repo research sketchbook — one person
+      thinking out loud in code, fast and uneven and honest about being uneven.
+      PurplePincher is the shell an idea moves into once it has been built for real,
+      tested against its actual use, and stripped of the speculative framing it was
+      born inside.
+    </p>
+
+    <div class="chain">
+      <div class="chain-step">
+        <span class="chain-num">01</span>
+        <strong>An idea outgrows the sketchbook</strong>
+        <p>Something in SuperInstance actually works — not "has tests," works, exercised through its real use case.</p>
+      </div>
+      <div class="chain-step">
+        <span class="chain-num">02</span>
+        <strong>It's checked, not taken on faith</strong>
+        <p>Docs rewritten to match reality. Every install command runs. Every claim is checkable.</p>
+      </div>
+      <div class="chain-step">
+        <span class="chain-num">03</span>
+        <strong>It moves into the shell</strong>
+        <p>Published, scoped, and stated plainly — what it is, and just as clearly what it is not.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="demo-section">
+  <svg class="lattice-bg" width="100%" height="100%" aria-hidden="true">
+    <defs>
+      <pattern id="latticeDots" width="40" height="40" patternUnits="userSpaceOnUse">
+        <circle cx="4" cy="4" r="1" fill="#5FB4C7" opacity="0.35"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#latticeDots)"/>
+  </svg>
+  <div class="wrap">
+    <div class="demo-head">
+      <p class="eyebrow" style="justify-content:center;display:flex">live, not illustrative</p>
+      <h2>Drag the point. Watch it find its shell.</h2>
+      <p>
+        This is the actual published <code style="font-family:var(--mono);color:var(--lattice)">constraint-theory-core</code>
+        crate, compiled to WebAssembly and run on this page's own Cloudflare Worker — not a
+        reimplementation, not a mockup. Every vector you drag snaps to the nearest exact
+        Pythagorean triple in a precomputed lattice of
+        <span id="stateCount">40,384</span> states.
+      </p>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-canvas-wrap">
+        <canvas id="snapCanvas" width="600" height="600"></canvas>
+        <span class="demo-hint">drag anywhere</span>
+      </div>
+      <div class="demo-readout">
+        <div class="readout-row">
+          <span class="readout-label">Input vector</span>
+          <span class="readout-value" id="rInput">0.3846, 0.9231</span>
+        </div>
+        <div class="readout-row">
+          <span class="readout-label">Snapped to</span>
+          <span class="readout-value claw" id="rSnap">0.3846, 0.9231</span>
+        </div>
+        <div class="readout-row">
+          <span class="readout-label">Triple</span>
+          <span class="readout-value" id="rTriple">5–12–13</span>
+        </div>
+        <div class="readout-row">
+          <span class="readout-label">Noise</span>
+          <span class="readout-value" id="rNoise">0.000000</span>
+        </div>
+        <div class="readout-row">
+          <span class="readout-label">Lattice density</span>
+          <div class="demo-controls" id="densityButtons">
+            <button data-d="50">50</button>
+            <button data-d="200" class="active">200</button>
+            <button data-d="500">500</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="demo-footnote">
+      Every drag is a real WASM call to <code>PythagoreanManifold::snap()</code> —
+      the same function <code>cargo test</code> exercises in the published crate.
+    </p>
+  </div>
+</div>
+
+<div class="registry-section">
+  <div class="wrap">
+    <div class="registry-head">
+      <h2>What has earned the shell</h2>
+      <p>Eleven repositories. One field-facing product; the rest infrastructure — real, tested, working, but not yet exposed to end users. That distinction is drawn for every entry, because it is the honest ceiling on all of them.</p>
+    </div>
+    <div class="ledger">
+      <div class="ledger-row flagship">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/deckboss">DeckBoss</a></div>
+        <div class="ledger-desc">Voice-first, offline-first fishing logbook. Tap to record; timestamp, GPS, and transcript attach themselves. No PurplePincher server ever holds a user's log.</div>
+        <div class="ledger-tag hardened">field-tested</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/pincher">pincher</a></div>
+        <div class="ledger-desc">The org's namesake. A Rust reflex engine that fires known intents locally in milliseconds, calling an LLM only on a genuine miss.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/constraint-theory-core">constraint-theory-core</a></div>
+        <div class="ledger-desc">The crate powering the demo above. Deterministic 2D vector snapping and geometric constraint-solving. 262 passing tests.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/plato-semantic-search">plato-semantic-search</a></div>
+        <div class="ledger-desc">A Cloudflare Worker doing Vectorize-backed semantic search. Deployed, 74 passing tests.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/plato-engine-block-c">plato-engine-block-c</a></div>
+        <div class="ledger-desc">A ~2 kLOC C99 runtime for a sensor/actuator/alarm "room." Single-header core, 35 passing tests.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/vessel-tuner">vessel-tuner</a></div>
+        <div class="ledger-desc">A live Cloudflare Worker that scans a fleet of Workers for health, latency, size, and security.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/git-native-agents">git-native-agents</a></div>
+        <div class="ledger-desc">Multi-agent coordination built entirely on git primitives — each agent a repo, no broker or database.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/conservation-guardian">conservation-guardian</a></div>
+        <div class="ledger-desc">A budget-and-waste guardrail for LLM/agent workflows. Published on PyPI.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/sonar-vision">sonar-vision</a></div>
+        <div class="ledger-desc">A pure-Python sonar simulation, tracking, and mapping toolkit.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/exocortex-mcp-ts">exocortex-mcp-ts</a></div>
+        <div class="ledger-desc">A zero-runtime-dependency TypeScript MCP server and REST API with from-scratch compute kernels.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://github.com/purplepincher/intent-directed-compilation">intent-directed-compilation</a></div>
+        <div class="ledger-desc">A research artifact: a real 3.17× mixed-precision SIMD speedup with honest errata.</div>
+        <div class="ledger-tag">infrastructure</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bar-section">
+  <div class="wrap">
+    <h2>How a repo earns the shell</h2>
+    <ul class="bar-list">
+      <li><strong>Verified working, end-to-end</strong> — exercised through its real use case, not "has tests." SuperInstance's own CI has been caught running <code style="font-family:var(--mono)">pytest || true</code>. That is banned here.</li>
+      <li><strong>Docs rewritten to match reality</strong> — every claimed feature exists; every example runs; every install command works.</li>
+      <li><strong>Speculative framing stripped to optional</strong> — where the underlying math is real, it's presented as what it actually is.</li>
+      <li><strong>Published</strong> — crates.io, PyPI, or npm, under the name the README uses.</li>
+      <li><strong>Scoped</strong> — a stated boundary of what it will not do.</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <a href="https://github.com/purplepincher/purplepincher">GitHub</a>
+    <a href="https://github.com/purplepincher/purplepincher/blob/main/ROADMAP.md">Roadmap</a>
+    <a href="https://github.com/purplepincher/purplepincher/blob/main/docs/PARADIGM.md">The essay</a>
+    <p class="tagline">Ideas start soft, at SuperInstance. A few of them harden here.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const canvas = document.getElementById('snapCanvas');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const SIZE = 600;
+  canvas.width = SIZE * dpr;
+  canvas.height = SIZE * dpr;
+  ctx.scale(dpr, dpr);
+
+  const CENTER = SIZE / 2;
+  const SCALE = SIZE / 2 - 40;
+
+  let density = 200;
+  let current = { x: 0.3846, y: 0.9231 };
+  let latestResult = null;
+
+  const rInput = document.getElementById('rInput');
+  const rSnap = document.getElementById('rSnap');
+  const rTriple = document.getElementById('rTriple');
+  const rNoise = document.getElementById('rNoise');
+  const stateCountEl = document.getElementById('stateCount');
+
+  function toCanvas(x, y) {
+    return [CENTER + x * SCALE, CENTER - y * SCALE];
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, SIZE, SIZE);
+    ctx.strokeStyle = 'rgba(240,233,216,0.08)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, CENTER); ctx.lineTo(SIZE, CENTER);
+    ctx.moveTo(CENTER, 0); ctx.lineTo(CENTER, SIZE);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(CENTER, CENTER, SCALE, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(95,180,199,0.25)';
+    ctx.stroke();
+
+    const [ix, iy] = toCanvas(current.x, current.y);
+    ctx.beginPath();
+    ctx.moveTo(CENTER, CENTER);
+    ctx.lineTo(ix, iy);
+    ctx.strokeStyle = 'rgba(240,233,216,0.3)';
+    ctx.setLineDash([3, 4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.beginPath();
+    ctx.arc(ix, iy, 5, 0, Math.PI * 2);
+    ctx.fillStyle = '#C9C0AB';
+    ctx.fill();
+
+    if (latestResult) {
+      const [sx, sy] = toCanvas(latestResult.snapped[0], latestResult.snapped[1]);
+      ctx.beginPath();
+      ctx.moveTo(CENTER, CENTER);
+      ctx.lineTo(sx, sy);
+      ctx.strokeStyle = '#A8548C';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(sx, sy, 7, 0, Math.PI * 2);
+      ctx.fillStyle = '#5FB4C7';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(sx, sy, 7, 0, Math.PI * 2);
+      ctx.strokeStyle = '#0E1A1C';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  function findTriple(a, b) {
+    // Best-effort small-integer triple label for the readout — reduce
+    // the ratio to low-denominator form for common triples.
+    const known = [
+      [3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41],
+      [12,35,37],[11,60,61],[28,45,53],[33,56,65],[16,63,65],[48,55,73],
+    ];
+    let best = null, bestErr = Infinity;
+    for (const [x,y,c] of known) {
+      for (const [ux,uy] of [[x,y],[y,x]]) {
+        const nx = ux/c, ny = uy/c;
+        const err = Math.hypot(nx - a, ny - b);
+        if (err < bestErr) { bestErr = err; best = [ux,uy,c]; }
+      }
+    }
+    if (best && bestErr < 0.01) return best[0] + '–' + best[1] + '–' + best[2];
+    return '(higher-order triple)';
+  }
+
+  async function snap(x, y) {
+    current = { x, y };
+    try {
+      const res = await fetch('/api/snap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ x, y, density }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        rSnap.textContent = 'invalid input';
+        return;
+      }
+      latestResult = data;
+      rInput.textContent = x.toFixed(4) + ', ' + y.toFixed(4);
+      rSnap.textContent = data.snapped[0].toFixed(4) + ', ' + data.snapped[1].toFixed(4);
+      rNoise.textContent = data.noise.toFixed(6);
+      rTriple.textContent = findTriple(data.snapped[0], data.snapped[1]);
+      stateCountEl.textContent = data.stateCount.toLocaleString();
+      draw();
+    } catch (e) {
+      rSnap.textContent = 'connecting…';
+    }
+  }
+
+  function pointerToVec(clientX, clientY) {
+    const rect = canvas.getBoundingClientRect();
+    const px = (clientX - rect.left) / rect.width * SIZE;
+    const py = (clientY - rect.top) / rect.height * SIZE;
+    const x = (px - CENTER) / SCALE;
+    const y = -(py - CENTER) / SCALE;
+    const len = Math.hypot(x, y) || 1;
+    return [x / len, y / len];
+  }
+
+  let dragging = false;
+  function onDown(e) { dragging = true; onMove(e); }
+  function onUp() { dragging = false; }
+  function onMove(e) {
+    if (!dragging) return;
+    const p = e.touches ? e.touches[0] : e;
+    const [x, y] = pointerToVec(p.clientX, p.clientY);
+    snap(x, y);
+  }
+
+  canvas.addEventListener('mousedown', onDown);
+  canvas.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+  canvas.addEventListener('touchstart', onDown, { passive: true });
+  canvas.addEventListener('touchmove', onMove, { passive: true });
+  window.addEventListener('touchend', onUp);
+
+  document.getElementById('densityButtons').addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    density = parseInt(btn.dataset.d, 10);
+    document.querySelectorAll('#densityButtons button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    snap(current.x, current.y);
+  });
+
+  draw();
+  snap(current.x, current.y);
+})();
+</script>
+</body>
+</html>
