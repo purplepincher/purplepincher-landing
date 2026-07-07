@@ -353,6 +353,27 @@
   }
   .ledger-tag.hardened { color: var(--hardened); }
 
+  /* domain registry: same discipline, one layer up (sites, not repos) */
+  .ledger-tag.tag-use { color: var(--hardened); }
+  .ledger-tag.tag-play { color: var(--claw); }
+  .ledger-tag.tag-borrow { color: var(--lattice); }
+  .ledger-tag.tag-watch,
+  .ledger-tag.tag-reserved,
+  .ledger-tag.tag-unrelated { color: var(--shell-dim); }
+  .domain-kinds {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 24px 0 8px;
+  }
+  .domain-kinds span {
+    font-family: var(--mono); font-size: 11px;
+    border: 1px solid var(--line); border-radius: 3px;
+    padding: 4px 9px; color: var(--shell-dim);
+  }
+  .registry-thesis {
+    font-style: italic; color: var(--shell-dim);
+    max-width: 62ch; margin: 16px 0 0; font-size: 0.94rem;
+  }
+
   /* ---------- adoption bar: the actual mechanism, plainly ---------- */
 
   .bar-section { padding: 56px 0 80px; }
@@ -570,6 +591,107 @@
         <div class="ledger-tag">infrastructure</div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="registry-section" id="domains">
+  <div class="wrap">
+    <div class="registry-head">
+      <h2>What this account actually is, one hop from anywhere in it</h2>
+      <p>The repo ledger above accounts for code. This accounts for the live sites built from it — sixteen domains, each tagged by what kind of thing it is, not narrated into one story. This isn't one story wearing sixteen faces. It's one discipline — build a real, narrow thing, say plainly what it is — applied wherever the org owner found a field worth trying it in. The coherence is the discipline, not a plot.</p>
+    </div>
+    <div class="domain-kinds">
+      <span>use it — real, shipped, field-tested</span>
+      <span>borrow it — a pattern you can copy without installing anything</span>
+      <span>play it — a live simulation you interact with, not just read</span>
+      <span>watch it — designed and being simulated, honestly labeled as such</span>
+      <span>reserved — an honest placeholder, not built yet</span>
+      <span>same pattern, new field — the event-log idea, applied here</span>
+      <span>unrelated — a real, different product that happens to share the account</span>
+    </div>
+    <div class="ledger" style="margin-top:28px;">
+      <div class="ledger-row flagship">
+        <div class="ledger-name"><a href="https://deckboss.net">deckboss.net</a></div>
+        <div class="ledger-desc">Voice-first, offline-first fishing logbook. The one you actually use. Field-tested, in captains' hands today.</div>
+        <div class="ledger-tag hardened tag-use">use it</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://cocapn.ai">cocapn.ai</a></div>
+        <div class="ledger-desc">How multi-agent coordination works as geometry, not polling. The one you copy prompts from — seven working chatbot prompts, no install.</div>
+        <div class="ledger-tag tag-borrow">borrow it</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://superinstance.ai">superinstance.ai</a></div>
+        <div class="ledger-desc">Every app is a MUD. The one you play with — a live, interactive simulation, not a page you read.</div>
+        <div class="ledger-tag tag-play">play it</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://cocapn.com">cocapn.com</a></div>
+        <div class="ledger-desc">Vessel-as-a-robot: a captain talks to their boat. The design, being simulated in the open — a real safety architecture, currently in progress, not overclaimed as shipped.</div>
+        <div class="ledger-tag tag-watch">watch it</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://capitaine.ai">capitaine.ai</a></div>
+        <div class="ledger-desc">A name reserved for a future captain-facing brand. Nothing built, said honestly, on purpose.</div>
+        <div class="ledger-tag tag-reserved">reserved</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://fishinglog.ai">fishinglog.ai</a></div>
+        <div class="ledger-desc">"Find the patterns that only show up across many sessions." Explicitly DeckBoss's sibling, not a rebrand — cross-trip analysis where DeckBoss captures one trip.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://activelog.ai">activelog.ai</a></div>
+        <div class="ledger-desc">"A log format that outlasts whatever writes it." The pattern underneath DeckBoss, named on its own.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://activeledger.ai">activeledger.ai</a></div>
+        <div class="ledger-desc">"A ledger that's structured and written down at the same time." Bookkeeping, same idea.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://businesslog.ai">businesslog.ai</a></div>
+        <div class="ledger-desc">"A business metric is only useful if you can ask it questions later." Same idea, a shop's ledger.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://dmlog.ai">dmlog.ai</a></div>
+        <div class="ledger-desc">"A campaign is a living thing, not a file." Same idea, a tabletop game's session log.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://makerlog.ai">makerlog.ai</a></div>
+        <div class="ledger-desc">"A project lives in the build log, not just the finished photo." Same idea, a workshop.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://personallog.ai">personallog.ai</a></div>
+        <div class="ledger-desc">"A personal agent should remember, not just respond." Same idea, a life.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://playerlog.ai">playerlog.ai</a></div>
+        <div class="ledger-desc">"Player activity is a signal that builds up over time." Same idea, a game studio.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://reallog.ai">reallog.ai</a></div>
+        <div class="ledger-desc">"A camera sees; a log remembers where." Same idea, a security camera.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://studylog.ai">studylog.ai</a></div>
+        <div class="ledger-desc">"Learning is a chain; the next session should pick up the link." Same idea, a student.</div>
+        <div class="ledger-tag tag-borrow">same pattern, new field</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-name"><a href="https://luciddreamer.ai">luciddreamer.ai</a></div>
+        <div class="ledger-desc">A dream journal and lucid-trigger tool. A real, separate product that happens to live in the same account — not a sibling, not a rebrand, not this pattern.</div>
+        <div class="ledger-tag tag-unrelated">unrelated</div>
+      </div>
+    </div>
+    <p class="registry-thesis">Every domain and tagline above is real and live, checked the same day this page shipped. If a visitor wants to see whether the pattern under DeckBoss actually generalizes, this is where to look — not a sentence inside DeckBoss's own pitch, but sibling, specific things standing on their own.</p>
   </div>
 </div>
 
