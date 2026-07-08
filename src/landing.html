@@ -361,6 +361,29 @@
   .ledger-tag.tag-watch,
   .ledger-tag.tag-reserved,
   .ledger-tag.tag-unrelated { color: var(--shell-dim); }
+
+  /* visual self-ranking: the registry sorts itself by how alive each row is.
+     tag-use (a real, shipped thing) reads loudest; tag-reserved / tag-unrelated
+     (nothing there yet, or genuinely off-topic) recede at rest and come forward
+     on hover. tag-watch stays full-weight -- something is actually being built.
+     Pure hierarchy via existing tokens + opacity: no tag text or copy changed. */
+  .ledger-row:has(.ledger-tag.tag-use) .ledger-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  .ledger-row:has(.ledger-tag.tag-use) .ledger-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .ledger-row:has(.ledger-tag.tag-reserved),
+  .ledger-row:has(.ledger-tag.tag-unrelated) {
+    opacity: 0.58;
+    transition: opacity 0.18s ease;
+  }
+  .ledger-row:has(.ledger-tag.tag-reserved):hover,
+  .ledger-row:has(.ledger-tag.tag-unrelated):hover { opacity: 1; }
+
   .domain-kinds {
     display: flex; flex-wrap: wrap; gap: 8px;
     margin: 24px 0 8px;
@@ -431,6 +454,8 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .ledger-row:has(.ledger-tag.tag-reserved),
+    .ledger-row:has(.ledger-tag.tag-unrelated) { transition: none; }
   }
 </style>
 </head>
