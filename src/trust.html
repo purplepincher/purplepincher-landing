@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trust — Purple Pincher</title>
+<meta name="description" content="The trust model: three agents, three demarcations, and a vault that holds the keys.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<nav><div class="wrap wide">
+  <a class="brand" href="/"><span class="crab">🦀</span> purplepincher</a>
+  <div class="links">
+    <a href="/how-it-works">How it works</a>
+    <a href="/shells">Shells</a>
+    <a href="/trust">Trust</a>
+    <a href="/start">Start</a>
+    <a class="btn" href="https://github.com/purplepincher/zero">Fork zero</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+<div class="pagehead">
+  <h1>Trust</h1>
+  <p class="lede">Three agents, three demarcations. Each owns exactly one side of a boundary, and none reaches across.</p>
+</div>
+
+<section class="block">
+  <h2>The tripartite</h2>
+  <div class="cols3">
+    <div class="col"><h4>1 · The human agent</h4><p>Specialises in knowing the <strong>person</strong> — presentation, judgement, conversation. Designs from the human end. Never touches git mechanics.</p><ul><li>What it knows: you</li><li>What it owns: the relationship</li><li>What it cannot do: reach into a repo</li></ul></div>
+    <div class="col"><h4>2 · The git agent</h4><p>Specialises in knowing the <strong>logic of the application</strong>. This is what Purple Pincher builds — the thing that lives in the repo. Never touches hardware, never performs the relationship.</p><ul><li>What it knows: the repo</li><li>What it owns: the application's logic</li><li>What it cannot do: know you, touch hardware</li></ul></div>
+    <div class="col"><h4>3 · The hardware agent</h4><p>Specialises in <strong>rendering the application to hardware</strong>. Drivers are just libraries; it picks the right material for the destination — C for the edge, Python and TypeScript for the cloud.</p><ul><li>What it knows: the machine</li><li>What it owns: the last mile</li><li>What it cannot do: change the logic</li></ul></div>
+  </div>
+  <p>The demarcations are where they are because the human, the logic, and the hardware change for different reasons, at different speeds, under different expertise. One agent spanning all three would be a monolith wearing a costume.</p>
+</section>
+
+<section class="block">
+  <h2>The vault</h2>
+  <p>The repo holds <strong>no secrets</strong>. All API access — GitHub, the model, everything — goes through the vault, a small Cloudflare Worker:</p>
+  <ul class="tight">
+    <li>The agent proves its identity with GitHub OIDC — a token minted by Actions itself, not stored anywhere.</li>
+    <li>The vault verifies the token, checks the allowlist, and proxies the call. Keys never leave the worker.</li>
+    <li>Registration is one allowlist entry: fork the template, open an issue titled <code class="inline">Register</code>, and the coordinator adds your repo. Until then, the vault stays silent.</li>
+    <li>Every access is logged. The repo is public, the workflows are visible, anyone can fork — forks get nothing until registered.</li>
+  </ul>
+</section>
+
+<section class="block">
+  <h2>What's out of scope</h2>
+  <ul class="tight">
+    <li><strong>No hosted runtime.</strong> There is no Purple Pincher server that holds your data. The agent runs on GitHub Actions, inside the repo you forked.</li>
+    <li><strong>No exfiltration path</strong> beyond the repo you gave it. Its hands are vault-proxied APIs with an allowlist between it and every key.</li>
+    <li><strong>No silent behaviour.</strong> Every action is a commit. If you can't see it in the log, it didn't happen.</li>
+    <li><strong>No lock-in.</strong> Delete the fork and it's gone — nothing to uninstall, no data held hostage.</li>
+  </ul>
+  <p class="not-line">What trust is not here: a promise. It's a structure you can inspect — the demarcations, the vault, the log — instead of a brand you have to believe.</p>
+</section>
+
+<div class="cta-band">
+  <h2>Inspect it yourself.</h2>
+  <p>The template is public. Read every line, then fork it.</p>
+  <a class="btn" href="/start">Fork and go →</a>
+</div>
+</div>
+
+<footer><div class="wrap wide">
+  <span>🦀 purplepincher</span>
+  <a href="https://github.com/purplepincher">GitHub org</a>
+  <a href="https://github.com/purplepincher/zero">zero template</a>
+  <span class="spacer">The repo is the agent.</span>
+</div></footer>
+</body>
+</html>

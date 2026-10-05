@@ -1,75 +1,45 @@
-import landingHtml from "./landing.html";
-import wasmModule from "./wasm/constraint_theory_core_wasm_bg.wasm";
-import { initSync, PythagoreanManifold } from "./wasm/constraint_theory_core_wasm.js";
+import indexHtml from "./index.html";
+import howItWorksHtml from "./how-it-works.html";
+import shellsHtml from "./shells.html";
+import trustHtml from "./trust.html";
+import startHtml from "./start.html";
+import styleCss from "./style.css";
 
-let wasmInitialized = false;
-const manifoldCache = new Map<number, InstanceType<typeof PythagoreanManifold>>();
+const PAGES: Record<string, string> = {
+  "/": indexHtml,
+  "/index.html": indexHtml,
+  "/how-it-works": howItWorksHtml,
+  "/how-it-works.html": howItWorksHtml,
+  "/shells": shellsHtml,
+  "/shells.html": shellsHtml,
+  "/trust": trustHtml,
+  "/trust.html": trustHtml,
+  "/start": startHtml,
+  "/start.html": startHtml,
+};
 
-function ensureWasm(): void {
-  if (!wasmInitialized) {
-    initSync(wasmModule);
-    wasmInitialized = true;
-  }
+const CSP =
+  "default-src 'self'; style-src 'self' https://fonts.googleapis.com; " +
+  "font-src https://fonts.gstatic.com; img-src 'self' data:; " +
+  "x-content-type-options: nosniff";
+
+function htmlResponse(body: string): Response {
+  return new Response(body, {
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "public, max-age=300",
+      "content-security-policy": CSP,
+      "x-content-type-options": "nosniff",
+    },
+  });
 }
-
-function getManifold(density: number): InstanceType<typeof PythagoreanManifold> {
-  let m = manifoldCache.get(density);
-  if (!m) {
-    m = new PythagoreanManifold(density);
-    manifoldCache.set(density, m);
-  }
-  return m;
-}
-
-const ALLOWED_DENSITIES = new Set([50, 200, 500]);
 
 export default {
   async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
+    const path = url.pathname.replace(/\/$/, "") || "/";
 
-    if (url.pathname === "/api/snap" && request.method === "POST") {
-      ensureWasm();
-
-      let body: unknown;
-      try {
-        body = await request.json();
-      } catch {
-        return Response.json({ error: "malformed request body" }, { status: 400 });
-      }
-
-      if (typeof body !== "object" || body === null) {
-        return Response.json({ error: "request body must be a JSON object" }, { status: 400 });
-      }
-
-      const { x: rawX, y: rawY, density: rawDensity } = body as Record<string, unknown>;
-      const x = Number(rawX);
-      const y = Number(rawY);
-      const density = ALLOWED_DENSITIES.has(Number(rawDensity)) ? Number(rawDensity) : 200;
-
-      if (!Number.isFinite(x) || !Number.isFinite(y)) {
-        return Response.json({ error: "x and y must be finite numbers" }, { status: 400 });
-      }
-
-      const manifold = getManifold(density);
-      const validation = manifold.validate_input(x, y);
-      if (validation) {
-        return Response.json({ error: validation }, { status: 400 });
-      }
-
-      try {
-        const result = manifold.snap(x, y);
-        return Response.json({
-          snapped: Array.from(result.snapped as Float32Array),
-          noise: result.noise,
-          stateCount: manifold.state_count(),
-          density,
-        });
-      } catch {
-        return Response.json({ error: "snap computation failed for this input" }, { status: 400 });
-      }
-    }
-
-    if (url.pathname === "/favicon.svg" || url.pathname === "/favicon.ico") {
+    if (path === "/favicon.svg" || path === "/favicon.ico") {
       // Family ink ground, claw-magenta pincer mark. Served inline so the
       // Worker stays hermetic (no new assets, no new origins).
       const faviconSvg =
@@ -86,17 +56,17 @@ export default {
       });
     }
 
-    if (url.pathname === "/" || url.pathname === "/index.html") {
-      return new Response(landingHtml, {
+    if (path === "/style.css") {
+      return new Response(styleCss, {
         headers: {
-          "content-type": "text/html; charset=utf-8",
-          "cache-control": "public, max-age=300",
-          "content-security-policy":
-            "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; img-src 'self'",
-          "x-content-type-options": "nosniff",
+          "content-type": "text/css; charset=utf-8",
+          "cache-control": "public, max-age=3600",
         },
       });
     }
+
+    const page = PAGES[path];
+    if (page) return htmlResponse(page);
 
     return new Response("Not found", { status: 404 });
   },

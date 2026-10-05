@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start — Purple Pincher</title>
+<meta name="description" content="Fork zero, register with the vault, watch the first commit land.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<nav><div class="wrap wide">
+  <a class="brand" href="/"><span class="crab">🦀</span> purplepincher</a>
+  <div class="links">
+    <a href="/how-it-works">How it works</a>
+    <a href="/shells">Shells</a>
+    <a href="/trust">Trust</a>
+    <a href="/start">Start</a>
+    <a class="btn" href="https://github.com/purplepincher/zero">Fork zero</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+<div class="pagehead">
+  <h1>Fork and go</h1>
+  <p class="lede">Three steps. Fifteen minutes to the first commit.</p>
+</div>
+
+<section class="block">
+  <h2>Prerequisites</h2>
+  <ul class="tight">
+    <li>A GitHub account.</li>
+    <li>A repo you want worked on — or just curiosity and an empty fork to watch.</li>
+  </ul>
+</section>
+
+<section class="block">
+  <h2>The three steps</h2>
+  <ol class="steps-ol">
+    <li>
+      <strong>Fork <a href="https://github.com/purplepincher/zero">purplepincher/zero</a>.</strong><br>
+      <span class="dim">Click Fork, give it a name, keep it public or make it private — the agent works either way. What you get: the whole mechanism. <code class="inline">AGENTS.md</code>, the heartbeat, the ears, the docs. Read it; it's short on purpose.</span>
+    </li>
+    <li>
+      <strong>Register with the vault.</strong><br>
+      <span class="dim">In your fork, open an issue titled <code class="inline">Register</code>. The fleet coordinator adds your repo to the vault allowlist. Until then the vault stays silent — forks get nothing until registered, which is the whole security model. You'll get a reply in the thread when it's live.</span>
+    </li>
+    <li>
+      <strong>Give it work.</strong><br>
+      <span class="dim">Open an issue describing what you want — a feature, a fix, a question. The <code class="inline">react</code> workflow replies in the thread within a minute or two; the next 15-minute <code class="inline">think</code> cycle picks the work up. Or trigger it now: Actions → think → Run workflow. Then watch <code class="inline">git log</code>.</span>
+    </li>
+  </ol>
+</section>
+
+<section class="block">
+  <h2>The first ten minutes</h2>
+  <p>What "working" looks like, concretely:</p>
+  <div class="terminal">
+    <div><span class="c"># you open an issue: "Add a health-check endpoint"</span></div>
+    <div><span class="c"># ~1 min: react replies in the thread — "On it, next cycle picks it up."</span></div>
+    <div><span class="c"># ~15 min: think wakes, reads the issue, writes the code</span></div>
+    <div><span class="p">$</span> <span class="o">git log --oneline -3</span></div>
+    <div><span class="c">7f2a1b9 think: autonomous cycle — picked up "Add a health-check endpoint"</span></div>
+    <div><span class="c">3c8d4e2 docs: health-check design notes</span></div>
+    <div><span class="c">b51e9a0 feat: health-check endpoint with probe test</span></div>
+    <div><span class="c"># you review the diff, merge or revert — you own the merge</span></div>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Troubleshooting</h2>
+  <div class="files">
+    <div class="file-row"><code>Vault stays silent</code><span>Your fork isn't registered yet. Open the <code class="inline">Register</code> issue and wait for the reply.</span></div>
+    <div class="file-row"><code>Nothing happens on schedule</code><span>Check Actions → think → is the workflow enabled? Forks sometimes need workflows manually enabled under Actions.</span></div>
+    <div class="file-row"><code>It replies but doesn't act</code><span>The ears (react) answer immediately; the hands (think) work on the 15-minute heartbeat. Give it one cycle.</span></div>
+  </div>
+</section>
+
+<section class="block">
+  <h2>The escape hatch</h2>
+  <p>Delete the fork. The agent lives nowhere else — no data held, nothing to uninstall, no account to close. That's not a feature we added; it's what falls out of the architecture.</p>
+  <p class="not-line">What starting is not: a signup. There's no form, no trial, no seat. A fork is the whole onboarding.</p>
+</section>
+
+<div class="cta-band">
+  <h2>Go.</h2>
+  <p><a class="btn" href="https://github.com/purplepincher/zero">Fork zero</a></p>
+</div>
+</div>
+
+<footer><div class="wrap wide">
+  <span>🦀 purplepincher</span>
+  <a href="https://github.com/purplepincher">GitHub org</a>
+  <a href="https://github.com/purplepincher/zero">zero template</a>
+  <span class="spacer">The repo is the agent.</span>
+</div></footer>
+</body>
+</html>

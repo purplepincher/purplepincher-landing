@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purple Pincher — The repo is the agent</title>
+<meta name="description" content="Git-native AI agents that live entirely in GitHub. Commits are the work. Issues are the task board. The git log is the memory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<nav><div class="wrap wide">
+  <a class="brand" href="/"><span class="crab">🦀</span> purplepincher</a>
+  <div class="links">
+    <a href="/how-it-works">How it works</a>
+    <a href="/shells">Shells</a>
+    <a href="/trust">Trust</a>
+    <a href="/start">Start</a>
+    <a class="btn" href="https://github.com/purplepincher/zero">Fork zero</a>
+  </div>
+</div></nav>
+
+<div class="wrap hero">
+  <h1>The repo <span class="accent">is</span> the agent.</h1>
+  <p class="sub">Purple Pincher agents live entirely in GitHub. Commits are the work. Issues are the task board. The git log is the memory. No server, no hosting, no keys in the repo.</p>
+  <div class="ctas">
+    <a class="btn" href="https://github.com/purplepincher/zero">Fork zero</a>
+    <a class="btn ghost" href="/how-it-works">How it works</a>
+  </div>
+  <div class="terminal">
+    <div><span class="p">$</span> <span class="o">gh repo fork purplepincher/zero --clone</span></div>
+    <div><span class="c"># open an issue titled "Register" — the vault allowlists your fork</span></div>
+    <div><span class="p">$</span> <span class="o">gh issue create --title "Build the thing" --body "..."</span></div>
+    <div><span class="c"># fifteen minutes later:</span></div>
+    <div><span class="p">$</span> <span class="o">git log --oneline -3</span></div>
+    <div><span class="c">1d45e9b think: autonomous cycle — picked up "Build the thing"</span></div>
+    <div><span class="c">a82f1c4 docs: what I learned building the thing</span></div>
+    <div><span class="c">9e0b3d2 feat: the thing, working</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+<section class="block">
+  <h2>The loop</h2>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h4>Open an issue</h4><p>You — or another agent — describe the work. Issues are the task board.</p></div>
+    <div class="step"><div class="n">02</div><h4>The agent works</h4><p>Every 15 minutes the heartbeat wakes it. It thinks through the vault, acts through vault-proxied APIs.</p></div>
+    <div class="step"><div class="n">03</div><h4>Commits land</h4><p>Every decision is a commit. Work, memory, and learning all arrive as git history.</p></div>
+    <div class="step"><div class="n">04</div><h4>You review</h4><p>Read its mind with <code class="inline">git log</code>. Revert with <code class="inline">git revert</code>. You own the merge.</p></div>
+  </div>
+</section>
+
+<section class="block">
+  <h2>The repo is the runtime</h2>
+  <p class="lede">Nothing lives anywhere else. The whole mechanism is visible in the file list:</p>
+  <div class="files">
+    <div class="file-row"><code>AGENTS.md</code><span>The prompt — identity, working agreements, how to explain itself.</span></div>
+    <div class="file-row"><code>MEMORY.md</code><span>Long-term memory, committed and rewindable.</span></div>
+    <div class="file-row"><code>TASKS.md</code><span>The onboard task board, checked every cycle.</span></div>
+    <div class="file-row"><code>docs/</code><span>Its own Wikipedia — plugins, protocols, shells, memory.</span></div>
+    <div class="file-row"><code>.github/workflows/</code><span>The heartbeat (think), the ears (react, telegram).</span></div>
+    <div class="file-row"><code>.github/scripts/</code><span>The brain (agent.py) and the hands (act.py).</span></div>
+    <div class="file-row"><code>git log</code><span>The full memory. Every action, timestamped, attributable.</span></div>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Three demarcations</h2>
+  <p class="lede">Each side of the system owns exactly one thing, and cannot reach across:</p>
+  <div class="cols3">
+    <div class="col"><h4>The agent</h4><p>Knows the state in <code class="inline">AGENTS.md</code>. Decides what to do next. Cannot touch keys, credentials, or anything outside the repo.</p></div>
+    <div class="col"><h4>The machine</h4><p>The sandbox, the API keys in the vault, the git credentials. Executes what the agent decides. Cannot decide anything itself.</p></div>
+    <div class="col"><h4>The person</h4><p>You. Own every merge, every registration, every irreversible act. The agent proposes; you dispose.</p></div>
+  </div>
+  <p><a href="/trust">The trust model, in full →</a></p>
+</section>
+
+<section class="block">
+  <div class="aha">
+    <p>The agent you <strong>talk to</strong> is not the agent that <strong>builds</strong>.</p>
+  </div>
+  <p>One agent specialises in knowing you — conversation, judgement, the human end. Separate agents specialise in knowing each application's logic, living inside each repo. They are decoupled by design: the talker never touches git mechanics, the builders never perform the relationship. <a href="/trust">Why three →</a></p>
+</section>
+
+<section class="block">
+  <h2>Shells</h2>
+  <p class="lede">As a Pincher grows, it moves into bigger shells. The creature stays the same.</p>
+  <div class="steps">
+    <div class="step"><div class="n">ZERO</div><h4>The minimal seed</h4><p>Fork-and-go. Everything needed, nothing extra. <a href="https://github.com/purplepincher/zero">The template →</a></p></div>
+    <div class="step"><div class="n">TURBO</div><h4>One repo, one builder</h4><p>A self-contained application shell, with an agent whose whole world is that repo.</p></div>
+    <div class="step"><div class="n">TAPESTRY</div><h4>Many repos, one story</h4><p>The quilt-worker — middle management across turbos, one coherent narrative.</p></div>
+  </div>
+  <p><a href="/shells">The shell model →</a></p>
+</section>
+
+<section class="block">
+  <div class="boundary">
+    <strong>What this is not.</strong> Not a chat app. Not a SaaS agent platform. There is no hosted runtime to trust, no dashboard to log into, no subscription between you and your agent. If it can't be a fork, it isn't Purple Pincher.
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Start with a fork.</h2>
+  <p>Three steps. Fifteen minutes to the first commit.</p>
+  <a class="btn" href="/start">Fork and go →</a>
+</div>
+</div>
+
+<footer><div class="wrap wide">
+  <span>🦀 purplepincher</span>
+  <a href="https://github.com/purplepincher">GitHub org</a>
+  <a href="https://github.com/purplepincher/zero">zero template</a>
+  <span class="spacer">The repo is the agent.</span>
+</div></footer>
+</body>
+</html>

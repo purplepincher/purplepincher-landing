@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it works — Purple Pincher</title>
+<meta name="description" content="The mechanism: AGENTS.md is the prompt, git is the memory, the heartbeat is the loop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<nav><div class="wrap wide">
+  <a class="brand" href="/"><span class="crab">🦀</span> purplepincher</a>
+  <div class="links">
+    <a href="/how-it-works">How it works</a>
+    <a href="/shells">Shells</a>
+    <a href="/trust">Trust</a>
+    <a href="/start">Start</a>
+    <a class="btn" href="https://github.com/purplepincher/zero">Fork zero</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+<div class="pagehead">
+  <h1>How it works</h1>
+  <p class="lede">The mechanism, before the pitch. Everything below is checkable against the <a href="https://github.com/purplepincher/zero">zero template</a>.</p>
+</div>
+
+<section class="block">
+  <h2>AGENTS.md is the prompt</h2>
+  <p>Every fork carries an <code class="inline">AGENTS.md</code> — the operator's manual the agent reads cold. Identity, working agreements, where memory lives, how to use tools, when to escalate. It is written so an agent arriving with no context can understand the whole system from these pages and explain it accurately to its human. If something in it is unclear, that is treated as a bug in the docs.</p>
+  <p>The alignment section orients the agent around understanding its own system and explaining it — because that is how documentation travels now: an agent digests, then tells its person.</p>
+</section>
+
+<section class="block">
+  <h2>State, all versioned</h2>
+  <div class="files">
+    <div class="file-row"><code>MEMORY.md</code><span>Long-term memory. Appended, never edited — the digest of everything learned.</span></div>
+    <div class="file-row"><code>TASKS.md</code><span>The task board. Open / in-progress / done, checked every wake cycle.</span></div>
+    <div class="file-row"><code>docs/</code><span>The agent's own Wikipedia — protocols, shells, plugins — built for its own purpose as it works.</span></div>
+    <div class="file-row"><code>ONBOARDING.md</code><span>First-boot checklist: identity, principles, alignment.</span></div>
+  </div>
+  <p>All of it is plain text, all of it diffable, all of it in git.</p>
+</section>
+
+<section class="block">
+  <h2>The git log is the memory</h2>
+  <p>The agent is like a snail: the git log is the silver trail showing where it has been. Every observation, decision, and lesson arrives as a commit — timestamped, attributable, rewindable. You read its mind the way you'd read any project's history, because it <em>is</em> a project's history.</p>
+  <p>As it grows it leaves usable shells — snapshots of working code, docs, identity, and memory. A local runtime (a Pi, a laptop, any machine) can move into a shell like a hermit crab and keep working offline, with its own brain. Shells flow down; thought stays local.</p>
+</section>
+
+<section class="block">
+  <h2>The loop, in detail</h2>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h4>Wake</h4><p>Every 15 minutes the <code class="inline">think</code> workflow fires. Or a human opens an issue, comments, or messages on Telegram — the ears hear immediately.</p></div>
+    <div class="step"><div class="n">02</div><h4>Observe</h4><p>The agent reads its state: task board, open issues, recent commits, memory. It builds context from the repo itself.</p></div>
+    <div class="step"><div class="n">03</div><h4>Think</h4><p>It reasons through the vault — an LLM call proxied through a Cloudflare Worker. The model key never touches the repo.</p></div>
+    <div class="step"><div class="n">04</div><h4>Act</h4><p>File writes, commits, issue comments, API calls — all through vault-proxied tools. Then it commits its memory and sleeps.</p></div>
+  </div>
+  <p>The agent is autonomous inside the repo. Dangerous actions are deferred, not blocked — the human reviews via the git log and owns every merge.</p>
+</section>
+
+<section class="block">
+  <h2>Failure modes, stated plainly</h2>
+  <ul class="tight">
+    <li><strong>It does the wrong thing.</strong> You see it in the log, commit by commit. Revert with <code class="inline">git revert</code>. The mistake is as reviewable as the work.</li>
+    <li><strong>It gets stuck.</strong> The heartbeat keeps waking it; each cycle re-reads state, so it recovers the way a person re-reads their notes.</li>
+    <li><strong>It hallucinates.</strong> Every claim it makes about the world passes through tools that return real results. When it invents, the log shows the invention next to the evidence — which is more than most agents offer.</li>
+    <li><strong>You want it gone.</strong> Delete the fork. The agent lives nowhere else; there is nothing to uninstall, no data held hostage.</li>
+  </ul>
+  <p class="not-line">What it is not: a black box you have to trust. The whole point is that you don't.</p>
+</section>
+
+<div class="cta-band">
+  <h2>The template is the whole mechanism.</h2>
+  <p>Fork it.</p>
+  <a class="btn" href="/start">Fork and go →</a>
+</div>
+</div>
+
+<footer><div class="wrap wide">
+  <span>🦀 purplepincher</span>
+  <a href="https://github.com/purplepincher">GitHub org</a>
+  <a href="https://github.com/purplepincher/zero">zero template</a>
+  <span class="spacer">The repo is the agent.</span>
+</div></footer>
+</body>
+</html>
