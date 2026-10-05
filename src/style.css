@@ -136,3 +136,11 @@ ul.tight li { margin-bottom: 10px; }
 ol.steps-ol { padding-left: 22px; }
 ol.steps-ol li { margin-bottom: 18px; }
 ol.steps-ol li::marker { color: var(--claw-bright); font-weight: 700; }
+
+/* mobile */
+@media (max-width: 640px) {
+  nav .wrap { flex-wrap: wrap; gap: 12px; }
+  nav .links { margin-left: 0; gap: 14px; font-size: 14px; flex-wrap: wrap; }
+  .hero { padding: 64px 0 48px; }
+  .aha p { font-size: 18px; }
+}
